@@ -1,6 +1,7 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
+console.log(process.env.REACT_APP_API_KEY);
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -11,4 +12,11 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
+
+const auth = getAuth();
+
+const googleProvider = new GoogleAuthProvider();
+
+export const signInWithGoogle = () =>
+  signInWithPopup(auth, googleProvider).then((result) => result.user);

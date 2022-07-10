@@ -1,7 +1,12 @@
 import React from "react";
 import "./Login.css";
+import { signInWithGoogle } from "../../firebase";
 
 function Login() {
+  const handleLogin = async () => {
+    const res = await signInWithGoogle();
+    console.log(res);
+  };
   return (
     <div
       className="login"
@@ -12,7 +17,7 @@ function Login() {
         <p className="login__desc">
           The best solution to store and share all your social media links.
         </p>
-        <button className="login__btn">
+        <button className="login__btn" onClick={handleLogin}>
           <div className="loginBtn__icon">
             <ion-icon name="logo-google"></ion-icon>
           </div>
