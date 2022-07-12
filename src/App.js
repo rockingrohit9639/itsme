@@ -3,21 +3,33 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import { auth } from "./firebase";
+import { useSelector, useDispatch } from "react-redux";
+import { setAuth, setUser } from "./redux/userRedux";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const user = useSelector((state) => state.user.user);
+  console.log(user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        setIsAuthenticated(true);
+        const userData = {
+          email: user.email,
+          uid: user.uid,
+          displayName: user.displayName,
+          username: user.email.split("@")[0],
+        };
+        dispatch(setUser(userData));
+        dispatch(setAuth(true));
       } else {
-        setIsAuthenticated(false);
+        dispatch(setAuth(false));
       }
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [dispatch]);
 
   if (isAuthenticated) {
     return (
