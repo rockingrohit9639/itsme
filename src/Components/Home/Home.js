@@ -9,7 +9,7 @@ function Home() {
 
   return (
     <div>
-      <button onClick={() => addNewLink(username, "Test", "https://test.com")}>
+      <button onClick={() => addNewLink(username, "test", "https://test.com")}>
         Add Test Link
       </button>
       <button onClick={() => auth.signOut()}>Signout</button>
