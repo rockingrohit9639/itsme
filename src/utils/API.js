@@ -1,6 +1,13 @@
-import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  deleteField,
+} from "firebase/firestore";
 import { db } from "../firebase";
 
+// Add New Link
 export const addNewLink = async (username, title, url) => {
   const docRef = doc(db, "users", username);
   try {
@@ -13,6 +20,7 @@ export const addNewLink = async (username, title, url) => {
   }
 };
 
+// Get all links for a user
 export const getLinks = async (username) => {
   const docRef = doc(db, "users", username);
   const userDoc = await getDoc(docRef);
@@ -20,8 +28,18 @@ export const getLinks = async (username) => {
   return userDoc.data();
 };
 
+// Update a link
 export const updateLink = (username, title, url) => {
   const docRef = doc(db, "users", username);
 
   return updateDoc(docRef, { [title]: url });
+};
+
+// Delete a link from a user
+export const deleteLink = (username, title) => {
+  const docRef = doc(db, "users", username);
+
+  return updateDoc(docRef, {
+    [title]: deleteField(),
+  });
 };
