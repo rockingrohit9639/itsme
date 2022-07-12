@@ -4,6 +4,7 @@ import {
   getDoc,
   updateDoc,
   deleteField,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -42,4 +43,11 @@ export const deleteLink = (username, title) => {
   return updateDoc(docRef, {
     [title]: deleteField(),
   });
+};
+
+// Delete a user
+export const deleteUser = (username) => {
+  const docRef = doc(db, "users", username);
+
+  return deleteDoc(docRef);
 };
