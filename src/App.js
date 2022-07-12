@@ -8,8 +8,6 @@ import { setAuth, setUser } from "./redux/userRedux";
 
 function App() {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-  const user = useSelector((state) => state.user.user);
-  console.log(user);
   const dispatch = useDispatch();
 
   useEffect(() => {
