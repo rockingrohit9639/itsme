@@ -1,0 +1,14 @@
+.navbar {
+    background-color: #fff;
+}
+
+.logo {
+  color: var(--clr-primary);
+}
+
+.navbar__userImg {
+    width: 3rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+}

@@ -5,6 +5,8 @@ import Login from "./Components/Login/Login";
 import { auth } from "./firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { setAuth, setUser } from "./redux/userRedux";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./Components/Navbar/Navbar";
 
 function App() {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
@@ -32,6 +34,7 @@ function App() {
   if (isAuthenticated) {
     return (
       <Router>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
