@@ -4,7 +4,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import YoutubeIcon from "@mui/icons-material/YouTube";
-import WebsiteIcon from "@mui/icons-material/Web";
+import WebsiteIcon from '@mui/icons-material/Public';
 
 export const getLinkIcons = (title) => {
   switch (title) {
