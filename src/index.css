@@ -14,3 +14,13 @@ body {
   font-family: "Open Sans", sans-serif;
   background: #f6f7fb !important;
 }
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  padding-inline: 2em;
+  margin-inline: auto;
+  max-width: 80rem;
+}

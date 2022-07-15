@@ -4,7 +4,7 @@
     justify-content: space-between;
     padding-block: 1rem;
     background-color: #FFF;
-    padding-inline: clamp(1rem, 50vw, 7rem);
+    padding-inline: clamp(1rem, 10vw, 7rem);
 }
 
 .logo {

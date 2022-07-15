@@ -1,0 +1,31 @@
+.inputForm {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 2rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.input {
+  border: none;
+  outline: none;
+  padding: 1rem;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 1rem;
+  flex: 1;
+  box-shadow: 0 8px 10px -10px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+  border: none;
+  outline: none;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: var(--clr-primary);
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 8px 10px -5px #3ab0ffb5;
+}
