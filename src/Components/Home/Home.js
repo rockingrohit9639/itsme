@@ -1,4 +1,5 @@
 import React from "react";
+import LinkCard from "../LinkCard/LinkCard";
 import "./Home.css";
 
 function Home() {
@@ -12,6 +13,15 @@ function Home() {
           Add Link
         </button>
       </form>
+
+      <div className="home__content">
+        <LinkCard />
+        <LinkCard />
+        <LinkCard />
+        <LinkCard />
+        <LinkCard />
+        <LinkCard />
+      </div>
     </div>
   );
 }
