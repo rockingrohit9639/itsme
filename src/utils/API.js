@@ -25,8 +25,16 @@ export const addNewLink = async (username, title, url) => {
 export const getLinks = async (username) => {
   const docRef = doc(db, "users", username);
   const userDoc = await getDoc(docRef);
+  const linksObject = userDoc.data();
+  
+  const links = Object.keys(linksObject).map((key) => {
+    return {
+      title: key,
+      url: linksObject[key],
+    };
+  });
 
-  return userDoc.data();
+  return links;
 };
 
 // Update a link

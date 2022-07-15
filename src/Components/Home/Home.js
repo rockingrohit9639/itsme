@@ -1,11 +1,17 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { addNewLink } from "../../utils/API";
+import React, { useCallback, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addUserLink, setUserLinks } from "../../redux/userRedux";
+import { addNewLink, getLinks } from "../../utils/API";
+import LinkCard from "../LinkCard/LinkCard";
 import "./Home.css";
 
 function Home() {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
+
+  const dispatch = useDispatch();
+
+  const userLinks = useSelector((state) => state.user.userLinks);
   const username = useSelector((state) => state.user?.user?.username);
 
   const handleSubmit = async (e) => {
@@ -16,12 +22,24 @@ function Home() {
 
     try {
       await addNewLink(username, title.toLowerCase(), url);
+
+      dispatch(addUserLink({ title, url }));
+
       setTitle("");
       setUrl("");
     } catch (err) {
       console.log(err);
     }
   };
+
+  const getUserLinks = useCallback(async () => {
+    const links = await getLinks(username);
+    dispatch(setUserLinks(links));
+  }, [username, dispatch]);
+
+  useEffect(() => {
+    getUserLinks();
+  }, [getUserLinks]);
 
   return (
     <div className="home container">
@@ -46,7 +64,13 @@ function Home() {
         </button>
       </form>
 
-      <div className="home__content"></div>
+      <div className="home__content">
+        {React.Children.toArray(
+          userLinks.map((link) => (
+            <LinkCard title={link.title} url={link.url} />
+          ))
+        )}
+      </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import "./LinkCard.css";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-function LinkCard() {
+function LinkCard({ title, url }) {
   return (
     <div className="linkCard">
       <LinkedInIcon
@@ -12,7 +12,7 @@ function LinkCard() {
         }}
       />
 
-      <div className="linkCard__title">LinkedIn</div>
+      <div className="linkCard__title">{title}</div>
 
       <div className="linkCard__actionButtons">
         <div className="deleteButton">
