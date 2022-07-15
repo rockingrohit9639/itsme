@@ -1,13 +1,24 @@
 .navbar {
-    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1rem;
+    background-color: #FFF;
+    padding-inline: clamp(1rem, 50vw, 7rem);
 }
 
 .logo {
   color: var(--clr-primary);
 }
 
+.navbar__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .navbar__userImg {
-    width: 3rem;
+    width: 2.5rem;
     aspect-ratio: 1;
     border-radius: 50%;
     object-fit: cover;
