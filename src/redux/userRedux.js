@@ -22,9 +22,14 @@ const userSlice = createSlice({
     addUserLink: (state, action) => {
       state.userLinks.push(action.payload);
     },
+    deleteUserLink: (state, action) => {
+      state.userLinks = state.userLinks.filter(
+        (link) => link.title !== action.payload
+      );
+    },
   },
 });
 
-export const { setAuth, setUser, setUserLinks, addUserLink } =
+export const { setAuth, setUser, setUserLinks, addUserLink, deleteUserLink } =
   userSlice.actions;
 export default userSlice.reducer;
