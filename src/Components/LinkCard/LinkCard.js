@@ -1,21 +1,21 @@
 import React from "react";
 import "./LinkCard.css";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { getLinkIcons } from "../../utils/utils";
+import InsertLinkIcon from "@mui/icons-material/InsertLink";
 
 function LinkCard({ title, url }) {
   return (
     <div className="linkCard">
-      <LinkedInIcon
-        sx={{
-          fontSize: "3rem",
-        }}
-      />
+      {getLinkIcons(title)}
 
       <div className="linkCard__title">{title}</div>
 
       <div className="linkCard__actionButtons">
-        <div className="deleteButton">
+        <div className="icon" onClick={() => window.open(url)}>
+          <InsertLinkIcon />
+        </div>
+        <div className="icon">
           <DeleteIcon sx={{ color: "red" }} />
         </div>
       </div>

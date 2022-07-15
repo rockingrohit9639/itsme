@@ -1,6 +1,6 @@
 .linkCard {
   border: 1px solid #e6e6e6;
-  padding: 1rem;
+  padding: 2rem;
   max-width: 20rem;
   background: #FFF;
   box-shadow: 0 8px 10px -10px rgba(0, 0, 0, 0.2);
@@ -16,8 +16,10 @@
 .linkCard__actionButtons {
     display: flex;
     justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
-.deleteButton {
+.icon {
     cursor: pointer;
 }
