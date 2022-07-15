@@ -17,12 +17,15 @@ function Navbar() {
       </div>
       <div className="navbar__right d-flex">
         <img
-          src="https://variety.com/wp-content/uploads/2022/02/Screen-Shot-2022-05-09-at-10.04.13-AM.png"
+          src={auth.currentUser.photoURL}
           alt="avatar"
           className="navbar__userImg img-fluid img-thumbnail"
         />
 
-        <div style={{ color: "#000", cursor: "pointer" }} onClick={handleLogout}>
+        <div
+          style={{ color: "#000", cursor: "pointer" }}
+          onClick={handleLogout}
+        >
           Logout
         </div>
       </div>

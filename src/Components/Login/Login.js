@@ -4,8 +4,7 @@ import { signInWithGoogle } from "../../firebase";
 
 function Login() {
   const handleLogin = async () => {
-    const res = await signInWithGoogle();
-    console.log(res);
+    await signInWithGoogle();
   };
   return (
     <div
