@@ -24,3 +24,7 @@ a {
   margin-inline: auto;
   max-width: 80rem;
 }
+
+.mt {
+  margin-top: 1rem;
+}

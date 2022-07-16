@@ -26,13 +26,17 @@ export const getLinks = async (username) => {
   const docRef = doc(db, "users", username);
   const userDoc = await getDoc(docRef);
   const linksObject = userDoc.data();
+  let links = [];
+
+  if (linksObject) {
+    links = Object.keys(linksObject).map((key) => {
+      return {
+        title: key,
+        url: linksObject[key],
+      };
+    });
+  }
   
-  const links = Object.keys(linksObject).map((key) => {
-    return {
-      title: key,
-      url: linksObject[key],
-    };
-  });
 
   return links;
 };

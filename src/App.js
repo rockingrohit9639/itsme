@@ -6,6 +6,7 @@ import { auth } from "./firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { setAuth, setUser } from "./redux/userRedux";
 import Navbar from "./Components/Navbar/Navbar";
+import ShowUserLinks from "./Components/ShowUserLinks/ShowUserLinks";
 
 function App() {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
@@ -36,6 +37,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/:username" element={<ShowUserLinks />} />
         </Routes>
       </Router>
     );
@@ -44,6 +46,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/:username" element={<ShowUserLinks />} />
         </Routes>
       </Router>
     );

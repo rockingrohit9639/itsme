@@ -72,7 +72,7 @@ function Home() {
         </button>
       </form>
 
-      <div className="home__content">
+      <div className="grid">
         {React.Children.toArray(
           userLinks.map((link) => (
             <LinkCard title={link.title} url={link.url} />

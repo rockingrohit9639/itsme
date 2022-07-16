@@ -31,19 +31,19 @@
   box-shadow: 0 8px 10px -5px #3ab0ffb5;
 }
 
-.home__content {
+.grid {
   display: grid;
   gap: 1rem;
 }
 
 @media only screen and (min-width: 730px) {
-  .home__content {
+  .grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media only screen and (min-width: 1024px) {
-  .home__content {
+  .grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 }
