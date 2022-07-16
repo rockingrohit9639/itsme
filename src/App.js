@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setAuth, setUser } from "./redux/userRedux";
 import Navbar from "./Components/Navbar/Navbar";
 import ShowUserLinks from "./Components/ShowUserLinks/ShowUserLinks";
+import RedirectUser from "./Components/RedirectUser/RedirectUser";
 
 function App() {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
@@ -38,6 +39,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:username" element={<ShowUserLinks />} />
+          <Route path="/:username/:title" element={<RedirectUser />} />
         </Routes>
       </Router>
     );
@@ -47,6 +49,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/:username" element={<ShowUserLinks />} />
+          <Route path="/:username/:title" element={<RedirectUser />} />
         </Routes>
       </Router>
     );

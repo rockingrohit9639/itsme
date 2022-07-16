@@ -36,7 +36,6 @@ export const getLinks = async (username) => {
       };
     });
   }
-  
 
   return links;
 };
@@ -62,4 +61,13 @@ export const deleteUser = (username) => {
   const docRef = doc(db, "users", username);
 
   return deleteDoc(docRef);
+};
+
+// Get particular link for a user
+export const getUserLink = async (username, title) => {
+  const docRef = doc(db, "users", username);
+  const userDoc = await getDoc(docRef);
+  const linksObject = userDoc.data();
+
+  return linksObject[title] || null;
 };
