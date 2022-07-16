@@ -20,6 +20,14 @@ function LinkCard({ title, url }) {
     }
   };
 
+  const redirectURL = (url) => {
+    if (!url.startsWith("http") || !url.startsWith("https")) {
+      window.open(`http://${url}`, "_blank");
+    } else {
+      window.open(url);
+    }
+  };
+
   return (
     <div className="linkCard">
       {getLinkIcons(title)}
@@ -27,7 +35,7 @@ function LinkCard({ title, url }) {
       <div className="linkCard__title">{title}</div>
 
       <div className="linkCard__actionButtons">
-        <div className="icon" onClick={() => window.open(url)}>
+        <div className="icon" onClick={() => redirectURL(url)}>
           <InsertLinkIcon />
         </div>
         <div className="icon" onClick={handleDelete}>
