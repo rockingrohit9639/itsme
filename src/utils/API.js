@@ -23,51 +23,76 @@ export const addNewLink = async (username, title, url) => {
 
 // Get all links for a user
 export const getLinks = async (username) => {
-  const docRef = doc(db, "users", username);
-  const userDoc = await getDoc(docRef);
-  const linksObject = userDoc.data();
-  let links = [];
+  try {
+    const docRef = doc(db, "users", username);
+    const userDoc = await getDoc(docRef);
+    const linksObject = userDoc.data();
+    let links = [];
 
-  if (linksObject) {
-    links = Object.keys(linksObject).map((key) => {
-      return {
-        title: key,
-        url: linksObject[key],
-      };
-    });
+    if (linksObject) {
+      links = Object.keys(linksObject).map((key) => {
+        return {
+          title: key,
+          url: linksObject[key],
+        };
+      });
+    }
+
+    return links;
+  } catch (err) {
+    console.log(err);
+    return [];
   }
-
-  return links;
 };
 
 // Update a link
 export const updateLink = (username, title, url) => {
-  const docRef = doc(db, "users", username);
+  try {
+    const docRef = doc(db, "users", username);
 
-  return updateDoc(docRef, { [title]: url });
+    return updateDoc(docRef, { [title]: url });
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 };
 
 // Delete a link from a user
 export const deleteLink = (username, title) => {
-  const docRef = doc(db, "users", username);
+  try {
+    const docRef = doc(db, "users", username);
 
-  return updateDoc(docRef, {
-    [title]: deleteField(),
-  });
+    return updateDoc(docRef, {
+      [title]: deleteField(),
+    });
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 };
 
 // Delete a user
 export const deleteUser = (username) => {
-  const docRef = doc(db, "users", username);
+  try {
+    const docRef = doc(db, "users", username);
 
-  return deleteDoc(docRef);
+    return deleteDoc(docRef);
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 };
 
 // Get particular link for a user
 export const getUserLink = async (username, title) => {
-  const docRef = doc(db, "users", username);
-  const userDoc = await getDoc(docRef);
-  const linksObject = userDoc.data();
+  try {
+    const docRef = doc(db, "users", username);
+    const userDoc = await getDoc(docRef);
+    const linksObject = userDoc.data();
 
-  return linksObject[title] || null;
+    return linksObject[title] || null;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 };
