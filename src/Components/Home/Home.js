@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addUserLink, setUserLinks } from "../../redux/userRedux";
 import { addNewLink, getLinks } from "../../utils/API";
 import LinkCard from "../LinkCard/LinkCard";
+import Loading from "../Loading/Loading";
 import "./Home.css";
 
 function Home() {
@@ -13,6 +14,8 @@ function Home() {
 
   const userLinks = useSelector((state) => state.user.userLinks);
   const username = useSelector((state) => state.user?.user?.username);
+
+  const [loading, setLoading] = useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,6 +46,7 @@ function Home() {
   const getUserLinks = useCallback(async () => {
     const links = await getLinks(username);
     dispatch(setUserLinks(links));
+    setLoading(false);
   }, [username, dispatch]);
 
   useEffect(() => {
@@ -51,6 +55,7 @@ function Home() {
 
   return (
     <div className="home container">
+      {loading && <Loading title={"Getting your links."} />}
       <form className="inputForm" onSubmit={handleSubmit}>
         <input
           type="text"
