@@ -1,14 +1,20 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUserLink } from "../../utils/API";
+import Loading from "../Loading/Loading";
 
 function RedirectUser() {
   const { username, title } = useParams();
-  const [userLink, setUserLink] = useState("");
+  const [userLink, setUserLink] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  console.log(loading);
 
   const getLinkAndRedirect = useCallback(async () => {
     const link = await getUserLink(username, title);
     setUserLink(link);
+
+    setLoading(false);
 
     if (!link) {
       return;
@@ -36,13 +42,7 @@ function RedirectUser() {
 
   return (
     <div className="container" style={style}>
-      {userLink === "" && (
-        <h1>
-          Getting{" "}
-          <span style={{ color: "var(--clr-primary)" }}>{username}</span>'s{" "}
-          {title}
-        </h1>
-      )}
+      {loading && <Loading title={`Getting ${username}'s ${title}.`} />}
       {userLink === null && (
         <h1>
           <span style={{ color: "var(--clr-primary)" }}>{username}</span> does
