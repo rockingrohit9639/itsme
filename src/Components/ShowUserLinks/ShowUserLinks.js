@@ -16,19 +16,35 @@ function ShowUserLinks() {
     getUserLinks();
   }, [getUserLinks]);
 
-  return (
-    <div className="container grid mt">
-      {userLinks.length > 0 ? (
-        React.Children.toArray(
+  const style = {
+    width: "100%",
+    height: "calc(100vh - 5rem)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+  };
+
+  if (userLinks.length > 0) {
+    return (
+      <div className="container grid mt">
+        {React.Children.toArray(
           userLinks.map((link) => (
             <LinkCard title={link.title} url={link.url} />
           ))
-        )
-      ) : (
-        <h1>This user have not links.</h1>
-      )}
-    </div>
-  );
+        )}
+      </div>
+    );
+  } else {
+    return (
+      <div className="container" style={style}>
+        <h1>
+          <span style={{ color: "var(--clr-primary)" }}>{username}</span> have
+          no links.
+        </h1>
+      </div>
+    );
+  }
 }
 
 export default ShowUserLinks;

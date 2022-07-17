@@ -4,7 +4,7 @@ import { getUserLink } from "../../utils/API";
 
 function RedirectUser() {
   const { username, title } = useParams();
-  const [userLink, setUserLink] = useState(null);
+  const [userLink, setUserLink] = useState("");
 
   const getLinkAndRedirect = useCallback(async () => {
     const link = await getUserLink(username, title);
@@ -31,16 +31,31 @@ function RedirectUser() {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    fontSize: "2rem",
-    fontWeight: "bold",
     textAlign: "center",
   };
 
   return (
     <div className="container" style={style}>
-      {userLink !== null
-        ? `Redirecting you to ${username}'s ${title}`
-        : `${username} does not have ${title} provided.`}
+      {userLink === "" && (
+        <h1>
+          Getting{" "}
+          <span style={{ color: "var(--clr-primary)" }}>{username}</span>'s{" "}
+          {title}
+        </h1>
+      )}
+      {userLink === null && (
+        <h1>
+          <span style={{ color: "var(--clr-primary)" }}>{username}</span> does
+          not have {title} provided.
+        </h1>
+      )}
+      {userLink && (
+        <h1>
+          Redirecting to{" "}
+          <span style={{ color: "var(--clr-primary)" }}>{username}</span>'s{" "}
+          {title}.
+        </h1>
+      )}
     </div>
   );
 }
