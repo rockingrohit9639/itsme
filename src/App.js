@@ -8,6 +8,7 @@ import { setAuth, setUser } from "./redux/userRedux";
 import Navbar from "./Components/Navbar/Navbar";
 import ShowUserLinks from "./Components/ShowUserLinks/ShowUserLinks";
 import RedirectUser from "./Components/RedirectUser/RedirectUser";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 function App() {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
