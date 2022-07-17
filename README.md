@@ -16,14 +16,14 @@ With the help of this username you can share all your links and you can remember
 
 Format of the final link will look something like this - 
 
-- `itsme.vercel.com/<your-username>/<title>`
+- `itsme-hazel.vercel.app/<your-username>/<title>`
 
 E.g. to share my linkedin -> 
- - `itsme.vercel.com/rohitsaini/linkedin`
+ - `itsme-hazel.vercel.app/rohitsaini/linkedin`
 
 By sharing this link, he/she will be redirected to your original site.
 
-If you only share `itsme.vercel.com/<your-username>`, it will give all your links.
+If you only share `itsme-hazel.vercel.app/<your-username>`, it will give all your links.
 
 <hr>
 
