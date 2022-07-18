@@ -5,7 +5,6 @@ import {
   setStatus,
   setUserLinks,
   STATUSES,
-  updateUserLink,
 } from "../../redux/userRedux";
 import { addNewLink, getLinks } from "../../utils/API";
 import LinkCard from "../LinkCard/LinkCard";
