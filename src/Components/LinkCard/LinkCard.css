@@ -4,6 +4,7 @@
   max-width: 20rem;
   background: #FFF;
   box-shadow: 0 8px 10px -10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
 .linkCard__title {
@@ -11,6 +12,14 @@
   font-weight: bold;
   margin-top: 1rem;
   text-transform: capitalize;
+}
+
+.linkCard__link {
+  user-select: all;
+  color: #ccc;
+  width: 100%;
+  display: block;
+  overflow: hidden;
 }
 
 .linkCard__actionButtons {
