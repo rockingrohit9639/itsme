@@ -7,11 +7,13 @@ import { deleteLink } from "../../utils/API";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUserLink } from "../../redux/userRedux";
 
-function LinkCard({ title, url }) {
-  const username = useSelector((state) => state.user.user.username);
+function LinkCard({ title, url, username }) {
+  const userFromStore = useSelector((state) => state.user.user?.username);
+  const { isAuthenticated } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const handleDelete = async () => {
+    if (!isAuthenticated) return;
     try {
       await deleteLink(username, title);
       dispatch(deleteUserLink(title));
@@ -38,9 +40,11 @@ function LinkCard({ title, url }) {
         <div className="icon" onClick={() => redirectURL(url)}>
           <InsertLinkIcon />
         </div>
-        <div className="icon" onClick={handleDelete}>
-          <DeleteIcon sx={{ color: "red" }} />
-        </div>
+        {isAuthenticated && username === userFromStore ? (
+          <div className="icon" onClick={handleDelete}>
+            <DeleteIcon sx={{ color: "red" }} />
+          </div>
+        ) : null}
       </div>
     </div>
   );

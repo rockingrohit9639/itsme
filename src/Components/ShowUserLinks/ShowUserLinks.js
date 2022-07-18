@@ -35,7 +35,7 @@ function ShowUserLinks() {
       <div className="container grid mt">
         {React.Children.toArray(
           userLinks.map((link) => (
-            <LinkCard title={link.title} url={link.url} />
+            <LinkCard title={link.title} url={link.url} username={username} />
           ))
         )}
       </div>
