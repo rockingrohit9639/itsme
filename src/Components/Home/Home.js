@@ -1,6 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addUserLink, setUserLinks } from "../../redux/userRedux";
+import {
+  addUserLink,
+  setStatus,
+  setUserLinks,
+  STATUSES,
+} from "../../redux/userRedux";
 import { addNewLink, getLinks } from "../../utils/API";
 import LinkCard from "../LinkCard/LinkCard";
 import Loading from "../Loading/Loading";
@@ -14,8 +19,7 @@ function Home() {
 
   const userLinks = useSelector((state) => state.user.userLinks);
   const username = useSelector((state) => state.user?.user?.username);
-
-  const [loading, setLoading] = useState(true);
+  const { status, loadingText } = useSelector((state) => state.user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,9 +36,17 @@ function Home() {
     }
 
     try {
+      dispatch(
+        setStatus({
+          status: STATUSES.LOADING,
+          loadingText: "Adding your link...",
+        })
+      );
+      
       await addNewLink(username, title.toLowerCase(), url);
 
       dispatch(addUserLink({ title, url }));
+      dispatch(setStatus({ status: STATUSES.IDLE, loadingText: "" }));
 
       setTitle("");
       setUrl("");
@@ -44,18 +56,26 @@ function Home() {
   };
 
   const getUserLinks = useCallback(async () => {
+    dispatch(
+      setStatus({ status: STATUSES.LOADING, loadingText: "Loading Links..." })
+    );
+
     const links = await getLinks(username);
     dispatch(setUserLinks(links));
-    setLoading(false);
+
+    dispatch(setStatus({ status: STATUSES.IDLE, loadingText: "" }));
   }, [username, dispatch]);
 
   useEffect(() => {
     getUserLinks();
   }, [getUserLinks]);
 
+  if (status === STATUSES.LOADING && loadingText !== "") {
+    return <Loading title={loadingText} />;
+  }
+
   return (
     <div className="home container">
-      {loading && <Loading title={"Getting your links."} />}
       <form className="inputForm" onSubmit={handleSubmit}>
         <input
           type="text"

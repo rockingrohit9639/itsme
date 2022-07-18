@@ -7,7 +7,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { Tooltip } from "@mui/material";
 import { deleteLink } from "../../utils/API";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteUserLink } from "../../redux/userRedux";
+import { deleteUserLink, setStatus, STATUSES } from "../../redux/userRedux";
 
 function LinkCard({ title, url, username }) {
   const userFromStore = useSelector((state) => state.user.user?.username);
@@ -17,8 +17,13 @@ function LinkCard({ title, url, username }) {
   const handleDelete = async () => {
     if (!isAuthenticated) return;
     try {
+      dispatch(
+        setStatus({ status: STATUSES.LOADING, loadingText: "Deleting link..." })
+      );
       await deleteLink(username, title);
       dispatch(deleteUserLink(title));
+
+      dispatch(setStatus({ status: STATUSES.IDLE, loadingText: "" }));
     } catch (err) {
       console.log(err);
     }
