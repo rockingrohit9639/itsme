@@ -28,7 +28,14 @@ const userSlice = createSlice({
       state.userLinks = action.payload;
     },
     addUserLink: (state, action) => {
-      state.userLinks.push(action.payload);
+      const userLink = state.userLinks.find(
+        (link) => link.title === action.payload.title
+      );
+      if (userLink) {
+        userLink.url = action.payload.url;
+      } else {
+        state.userLinks.push(action.payload);
+      }
     },
     deleteUserLink: (state, action) => {
       state.userLinks = state.userLinks.filter(
